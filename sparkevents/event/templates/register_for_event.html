@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register for Event
+{% endblock %}
+
+{% block content %}
+<center>
+<div class="container mt-4">
+    <h1>Register for {{ event.text }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+</center>
+{% endblock %}

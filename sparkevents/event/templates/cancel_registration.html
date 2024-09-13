@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Cancel Registration
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Cancel Registration</h1>
+    <p>Are you sure you want to cancel your registration for the event "{{ registration.event.text }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cancel Registration</button>
+        <a href="{% url 'registered_events' %}" class="btn btn-secondary">Go Back</a>
+    </form>
+</div>
+{% endblock %}

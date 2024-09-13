@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Registration Successful
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Registration Successful</h1>
+    <p>You have successfully registered for the event!</p>
+    <a href="{% url 'event_list' %}" class="btn btn-primary mt-3">Back to Events List</a>
+</div>
+{% endblock %}

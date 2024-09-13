@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Event Details
+{% endblock %}
+
+{% block content %}
+<center>
+<div class="container mt-4">
+    <h1>{{ event.text|upper }}</h1>
+    <p>Location: {{ event.location }}</p>
+    <p>Capacity: {{ event.capacity }}</p>
+    {% if event.photo %}
+    <img src="{{ event.photo.url }}" class="img-fluid" alt="Event Photo">
+    {% endif %}
+    <a href="{% url 'event_list' %}" class="btn btn-primary mt-3">Back to Events List</a>
+    {% if not registered %}
+    <form method="post" action="{% url 'register_for_event' event.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success mt-3">Register for Event</button>
+    </form>
+    {% else %}
+    <p class="text-success mt-3">You are already registered for this event.</p>
+    {% endif %}
+</div>
+</center>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4">WELCOME TO SPARK EVENTS</h1>
+<h1>Are you sure that you want to delete the event</h1>
+<form method="POST">
+    {%csrf_token%}
+    <button class="btn btn-danger">Delete</button>
+    <a class="btn btn-success" href="{%url 'event_list'%}">Cancel</a>
+</form> 
+</form>
+{% endblock %}
+

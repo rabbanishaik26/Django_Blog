@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<center>
+<div class="card-body mt-5 text-black" style="background: #FCF5E5">
+<h2>Login form</h2>
+<form method='POST'>
+{% csrf_token %}
+{{form.as_p}}
+<button class="btn btn-primary mb-3">login</button>
+</form>
+<p>Don't have an account?<a href="{% url 'register' %}">Register here</a></p>
+</div>
+</center>
+{% endblock %}

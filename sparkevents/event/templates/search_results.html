@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+{% if events %}
+    <div class="container row gap-3">
+        {% for event in events %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ event.photo.url }}" class="card-img-top" alt="Event Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.user.username }}</h5>
+                <p class="card-text">{{ event.text }}</p>
+                {% if event.user == user %}
+                <a href="{% url 'event_edit' event.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'event_delete' event.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No events found matching your search criteria.</p>
+{% endif %}
+{% endblock %}

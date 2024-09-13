@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4">WELCOME TO SPARK EVENTS</h1>
+{% if user.is_authenticated %}
+<h1 class="text-center text-white mt-4">{{user.username | upper }}</h1>
+{% else %}
+<h1 class="text-center text-white mt-4"> Guests </h1>
+{% endif %}
+<a class="btn btn-primary mb-2" href="{% url 'event_create' %}">Create event</a>
+<a class="btn btn-primary mb-2" href="{% url 'registered_events' %}">Registered Events</a>
+<div class="container row gap-3">
+    {% for event in events %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ event.photo.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Organizer : {{event.user.username | upper}}</h5>
+          <p class="card-text">{{event.text}}</p>
+          <p class="card-text">Location : {{event.location | upper}}</p>
+          <p class="card-text">capacity : {{event.capacity}}</p>
+          {% if user == event.user %}
+          <a href="{% url 'event_edit' event.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'event_delete' event.id %}" class="btn btn-danger">Delete</a>
+          {% else %}
+          <center><a href="{% url 'event_detail' event.id %}" class="btn btn-success">View</a></center>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor%}
+</div>
+{% endblock %}
+

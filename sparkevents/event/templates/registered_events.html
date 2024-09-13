@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+My Registered Events
+{% endblock %}
+
+{% block content %}
+<center>
+<div class="container mt-4 " >
+    <h1>My Registered Events</h1>
+    {% if events %}
+        <ul class="list-group">
+            {% for event in events %}
+            <br>
+                <li class="list-group-item">
+                    <h5>{{ event.text }}</h5>
+                    <p>Location: {{ event.location }}</p>
+                    <p>Capacity: {{ event.capacity }}</p>
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+                    <a href="{% url 'cancel_registration' event.id %}" class="btn btn-danger">Cancel Registration</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'event_list' %}" class="btn btn-primary mt-3">Back to Events List</a>
+    {% else %}
+        <p>You have not registered for any events.</p>
+        <a href="{% url 'event_list' %}" class="btn btn-primary mt-3">Back to Events List</a>
+    {% endif %}
+</div>
+</center>
+{% endblock %}
